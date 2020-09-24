@@ -122,7 +122,11 @@ typedef ssize_t la_ssize_t;
 # endif
 #else
 /* Static libraries or non-Windows needs no special declaration. */
-# define __LA_DECL
+# ifdef __LIBARCHIVE_BUILD
+#  define __LA_DECL      __attribute__((visibility("default")))
+# else
+#  define __LA_DECL
+# endif
 #endif
 
 #if defined(__GNUC__) && __GNUC__ >= 3 && !defined(__MINGW32__)

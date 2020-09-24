@@ -124,7 +124,11 @@ typedef ssize_t la_ssize_t;
 # endif
 #else
 /* Static libraries on all platforms and shared libraries on non-Windows. */
-# define __LA_DECL
+# ifdef __LIBARCHIVE_BUILD
+#  define __LA_DECL      __attribute__((visibility("default")))
+# else
+#  define __LA_DECL
+# endif
 #endif
 
 #if defined(__GNUC__) && __GNUC__ >= 3 && __GNUC_MINOR__ >= 1
