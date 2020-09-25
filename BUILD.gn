@@ -1,10 +1,6 @@
 # Copyright 2020 CloudMosa Inc.
-
-#config("public_config") {
-#  include_dirs = [
-#    "include/"
-#  ]
-#}
+# Converted from ./configure --without-xml2 --without-expat --without-openssl \
+#    --without-cng --without-lzma --without-lz4 --without-libb2 --without-bz2lib 
 
 component("libarchive")  {
   output_name = "archive"
@@ -144,6 +140,17 @@ component("libarchive")  {
     "libarchive/archive_blake2s_ref.c",
     "libarchive/archive_blake2sp_ref.c"
   ]
+
+  if (is_linux) {
+    sources += [
+      "libarchive/archive_disk_acl_linux.c"
+    ]
+  }
+  if (is_mac) {
+    sources += [
+      "libarchive/archive_disk_acl_darwin.c"
+    ]
+  }
 }
 
 # vim: sts = 2: sw = 2:
