@@ -1046,7 +1046,7 @@
 #define HAVE_SYS_ACL_H 1
 
 /* Define to 1 if you have the <sys/cdefs.h> header file. */
-#define HAVE_SYS_CDEFS_H 1
+#define HAVE_SYS_CDEFS_H 0
 
 /* Define to 1 if you have the <sys/dir.h> header file, and it defines `DIR'.
    */
