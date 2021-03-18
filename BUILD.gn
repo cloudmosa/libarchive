@@ -1,6 +1,15 @@
 # Copyright 2020 CloudMosa Inc.
-# Converted from ./configure --without-xml2 --without-expat --without-openssl \
-#    --without-cng --without-lzma --without-lz4 --without-libb2 --without-bz2lib 
+#
+# config_linux.h and config_macosx.h are generated from
+#   ./configure --without-xml2 --without-expat --without-openssl \
+#      --without-cng --without-lzma --without-lz4 --without-libb2 --without-bz2lib
+#
+# config_ios.h are generated from
+#   CC="clang -arch arm64 -mios-version-min=9.0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk"  \
+#   CXX="clang++ -arch arm64 -mios-version-min=9.0 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk"  \
+#   ./configure --host=arm-apple-darwin11 --without-xml2 --without-expat --without-openssl \
+#       --without-cng --without-lzma --without-lz4 --without-libb2 --without-bz2lib
+#
 
 component("libarchive")  {
   output_name = "archive"
@@ -146,7 +155,7 @@ component("libarchive")  {
       "libarchive/archive_disk_acl_linux.c"
     ]
   }
-  if (is_mac) {
+  if (is_mac || is_ios) {
     sources += [
       "libarchive/archive_disk_acl_darwin.c"
     ]
